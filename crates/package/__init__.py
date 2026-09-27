@@ -18,7 +18,7 @@ async def setup(bot: "BallsDexBot"):
     replacements = {"crates": settings.plural_crate_name, "crate": settings.crate_name}
 
     current = bot.tree.translator
-    
+
     if current is not None and not isinstance(current, CrateTranslator):
         await bot.tree.set_translator(CrateTranslator(current, replacements))
 
