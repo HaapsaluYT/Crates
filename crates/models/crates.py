@@ -30,7 +30,7 @@ class Crate(models.Model):
         Ball,
         blank=True,
         help_text=(
-            "The countryballs that can be given. Combined with any balls found in reward_groups."
+            "The countryballs that can be given. Combined with any balls found in reward_groups. "
             "If both are blank, countryballs will be chosen at random."
         ),
     )

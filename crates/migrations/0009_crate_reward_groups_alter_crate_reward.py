@@ -4,21 +4,28 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('bd_models', '0019_guildconfig_tips_enabled'),
-        ('crates', '0008_crate_respect_ball_rarity_and_more'),
+        ("bd_models", "0019_guildconfig_tips_enabled"),
+        ("crates", "0008_crate_respect_ball_rarity_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='crate',
-            name='reward_groups',
-            field=models.ManyToManyField(blank=True, help_text='Groups of countryballs that can be given. Every ball in a group becomes an eligible reward option with any other individual balls selected above. Duplicates are removed.', to='bd_models.ballgroup'),
+            model_name="crate",
+            name="reward_groups",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Groups of countryballs that can be given. Every ball in a group becomes an eligible reward option with any other individual balls selected above. Duplicates are removed.",
+                to="bd_models.ballgroup",
+            ),
         ),
         migrations.AlterField(
-            model_name='crate',
-            name='reward',
-            field=models.ManyToManyField(blank=True, help_text='The countryballs that can be given. Combined with any balls found in reward_groups (duplicates removed). If both are blank, countryballs will be chosen at random.', to='bd_models.ball'),
+            model_name="crate",
+            name="reward",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="The countryballs that can be given. Combined with any balls found in reward_groups. If both are blank, countryballs will be chosen at random.",
+                to="bd_models.ball",
+            ),
         ),
     ]
