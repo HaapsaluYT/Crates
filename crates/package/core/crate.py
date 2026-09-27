@@ -27,7 +27,14 @@ async def open_crate(crate_instance: CrateInstance, player: Player) -> list[Ball
     crate = crate_instance.crate
 
     specials = [special async for special in crate.specials.all()]
-    reward = [ball async for ball in crate.reward.all()]
+
+    reward_balls: dict[int, Ball] = {}
+    async for ball in crate.reward.all():
+        reward_balls[ball.pk] = ball
+    async for group in crate.reward_groups.all():
+        async for ball in group.balls.all():
+            reward_balls[ball.pk] = ball
+    reward = list(reward_balls.values())
 
     respect_ball_rarity = crate.respect_ball_rarity and bool(reward)
     respect_special_rarity = crate.respect_special_rarity and bool(specials)

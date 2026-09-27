@@ -25,6 +25,13 @@ docs = [
     "mkdocs-material>=9.7.7",
 ]
 
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["crates*"]
+
 [tool.ruff]
 line-length = 120
 indent-width = 4

@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
 
-from bd_models.models import Ball, Player, Special
+from bd_models.models import Ball, BallGroup, Player, Special
 
 from .pool import Pool
 from .regex import EMOJI_ID_RE
@@ -29,7 +29,19 @@ class Crate(models.Model):
     reward = models.ManyToManyField(
         Ball,
         blank=True,
-        help_text="The countryballs that can be given. If blank, countryballs will be chosen at random.",
+        help_text=(
+            "The countryballs that can be given. Combined with any balls found in reward_groups."
+            "If both are blank, countryballs will be chosen at random."
+        ),
+    )
+
+    reward_groups = models.ManyToManyField(
+        BallGroup,
+        blank=True,
+        help_text=(
+            "Groups of countryballs that can be given. Every ball in a group becomes an eligible "
+            "reward option with any other individual balls selected above. Duplicates are removed."
+        ),
     )
 
     specials = models.ManyToManyField(

@@ -18,7 +18,7 @@ class CrateAdmin(admin.ModelAdmin):
     list_display = ("name", "emoji", "rarity", "amount_min", "amount_max", "openable")
     list_editable = ("rarity", "amount_min", "amount_max", "openable")
     search_fields = ("name",)
-    autocomplete_fields = ("reward", "specials", "pools")
+    autocomplete_fields = ("reward", "reward_groups", "specials", "pools")
 
     fieldsets = (
         (None, {"fields": ("name", "emoji_id", "rarity", "openable")}),
@@ -26,7 +26,7 @@ class CrateAdmin(admin.ModelAdmin):
             "Rewarding",
             {
                 "description": "Fields for crate rewarding logic",
-                "fields": ("reward", "specials", "amount_min", "amount_max"),
+                "fields": ("reward", "reward_groups", "specials", "amount_min", "amount_max"),
             },
         ),
         ("Distribution", {"description": "Crate distribution fields", "fields": ("pools",)}),
