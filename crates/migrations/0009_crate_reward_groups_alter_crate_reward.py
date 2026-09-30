@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
             name="reward_groups",
             field=models.ManyToManyField(
                 blank=True,
-                help_text="Groups of countryballs that can be given. Every ball in a group becomes an eligible reward option "
-                "with any other individual balls selected above. Duplicates are removed.",
+                help_text="Groups of countryballs that can be given. Every ball in a group becomes an eligible reward "
+                "option with any other individual balls selected above. Duplicates are removed.",
                 to="bd_models.ballgroup",
             ),
         ),
